@@ -33,7 +33,8 @@ const changeLocaleService = (function () {
   }
 
   function changeLocale(lang) {
-    fetch('../src/localeData.json')
+    const url = 'https://raw.githubusercontent.com/iralitv/fancy-weather/master/src/localeData.json';
+    fetch(url)
       .then((res) => res.json())
       .then((data) => parsingLocale(data, lang))
       .catch((e) => e.message);
