@@ -36,6 +36,7 @@
   },
   "homepage": "https://github.com/rolling-scopes-school/iralitv-RS2020Q1#readme",
   "dependencies": {
+    "jest-fetch-mock": "^3.0.3",
     "moment": "^2.26.0",
     "moment-timezone": "^0.5.31"
   }

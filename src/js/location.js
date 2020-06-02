@@ -31,24 +31,16 @@ const getUserLocation = async () => {
   return (cityName)
     ? getGeoCode(cityName.toLowerCase())
       .then((data) => Object.values(data.results[0].geometry))
-      .catch((e) => document.querySelector('.forecast__notification').textContent = `No results for ${cityName}`)
+      .catch((e) => {
+        document.querySelector('.forecast__notification').textContent = `No results for ${cityName}`;
+        return e;
+      })
     : getCurrentLocation()
       .then((data) => data.loc.split(','));
 };
 
-const geoCoords = document.querySelector('.geolocation');
-
-const geoLocation = (coords) => {
-  const [latitude, longitude] = coords;
-  const latitudeArray = latitude.toString().split('.');
-  const longitudeArray = longitude.toString().split('.');
-
-  geoCoords.innerText = `Latitude: ${latitudeArray[0]}°${latitudeArray[1].slice(0, 2)}'
-                         Longitude: ${longitudeArray[0]}°${longitudeArray[1].slice(0, 2)}'`;
-
-  document.getElementById('map-container-id').appendChild(geoCoords);
-};
-
 export {
-  getUserLocation, geoLocation, getGeoCode, getCurrentLocation,
+  getUserLocation,
+  getGeoCode,
+  getCurrentLocation,
 };

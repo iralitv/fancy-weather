@@ -40,6 +40,10 @@ html {
   font-family: "Gilroy Regular", sans-serif;
 }
 
+.loading {
+  display: none;
+}
+
 .header {
   min-height: 60px;
   background: $color-blur;
@@ -256,9 +260,6 @@ html {
   @include d-flex(normal, center, column);
   & > * {
     margin: 20px 0;
-  }
-  &__notification {
-    font-size: calc(2rem + 1vw);
   }
   &__city {
     font-size: calc(3rem + 1vw);

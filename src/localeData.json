@@ -1,0 +1,62 @@
+{
+  "en": {
+    "button": {
+      "reload": "Refresh img",
+      "search": "Search"
+    },
+    "select": {
+      "en": "Eng",
+      "ru": "Rus",
+      "be": "Bel"
+    },
+    "weather": {
+      "summary": "Summary",
+      "feels": "Feels like",
+      "wind": ["Wind", "m/s"],
+      "humidity": "Humidity",
+      "max": "Max",
+      "min": "Min"
+    },
+    "geocoords": ["Latitude", "Longitude"]
+  },
+  "ru": {
+    "button": {
+      "reload": "Изменить бэкграунд",
+      "search": "Поиск"
+    },
+    "select": {
+      "en": "Англ",
+      "ru": "Рус",
+      "be": "Бел"
+    },
+    "weather": {
+      "summary": "Описание",
+      "feels": "Ощущается как",
+      "wind": ["Ветер", "м/с"],
+      "humidity": "Влажность",
+      "max": "Макс",
+      "min": "Мин"
+    },
+    "geocoords": ["Широта", "Долгота"]
+  },
+  "be": {
+    "button": {
+      "reload": "Змяніць бэкграўнд",
+      "search": "Пошук"
+    },
+    "select": {
+      "en": "Англ",
+      "ru": "Рус",
+      "be": "Бел"
+    },
+    "weather": {
+      "summary": "Апісанне",
+      "feels": "Адчуваецца як",
+      "wind": ["Вецер", "м/с"],
+      "humidity": "Вільготнасць",
+      "max": "Макс",
+      "min": "Мін"
+    },
+    "geocoords": ["Шырата", "Даугата"]
+  }
+}

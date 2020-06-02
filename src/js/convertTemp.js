@@ -34,10 +34,13 @@ const chooseTemp = (event) => {
   }
   if (event.target.classList.contains('temp__label')) {
     localStorage.setItem('temp', event.target.textContent);
-    console.log(localStorage.getItem('temp'));
     convertTemp();
   }
 };
 
-
-export { convertTemp, chooseTemp };
+module.exports = {
+  convertToCelcious,
+  convertToFahrenheit,
+  convertTemp,
+  chooseTemp,
+};
