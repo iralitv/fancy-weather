@@ -9,9 +9,8 @@ import changeBackground from './background';
 let clockInterval;
 
 // eslint-disable-next-line consistent-return
-const searchWeather = async () => {
+const searchWeather = async (lang = 'en') => {
   try {
-    const lang = localStorage.getItem('language') || 'en';
     const coords = await getUserLocation();
     writeCoords(coords);
     const weather = await getWeather(coords, lang);
@@ -37,13 +36,13 @@ const searchWeather = async () => {
   }
 };
 
-const handleSearch = () => {
+const handleSearch = (lang = 'en') => {
   const searchField = document.querySelector('.search__input');
   document.querySelector('.forecast').classList.add('loading');
   localStorage.setItem('city', searchField.value);
   clearInterval(clockInterval);
 
-  searchWeather();
+  searchWeather(lang);
 };
 
 export { searchWeather, handleSearch };
