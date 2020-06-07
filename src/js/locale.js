@@ -60,34 +60,11 @@ const getTranslation = memoize(async (enWord, currentLang, prevLang) => {
   }
 });
 
-const detectLang = memoize(async (word) => {
-  try {
-    const API_KEY = 'trnsl.1.1.20200424T060744Z.2252b23703addec2.e0bbc25dbcd8eb6b4f823d9a15c8c99ee6e03aeb';
-    const url = `https://translate.yandex.net/api/v1.5/tr/detect`;
-    const res = await fetch(url, {
-      method: 'POST',
-      body:`key=${API_KEY}&text=${word}`,
-      headers: new Headers({
-        'Content-Type': 'application/x-www-form-urlencoded'
-      })
-    });
-    const string = await res.text();
-    const xml = await (new window.DOMParser()).parseFromString(string, "text/xml")
-
-    return xml;
-  } catch (e) {
-    return e;
-  }
-});
-
 const changeLanguage = async (event) => {
-  const cityName = document.querySelector('.forecast__city');
-  const currentLang = (event && event.target.value) || localStorage.getItem('language') || 'en';
+  let prevLang = localStorage.getItem('language') || 'en';
+  const currentLang = (event.target && event.target.value) || 'en';
   localStorage.setItem('language', currentLang);
-
-  let prevLang = 'en';
-  const detectedXML = await detectLang(`${cityName.textContent}`);
-  prevLang = detectedXML.querySelector('DetectedLang').getAttribute('lang');
+  const cityName = document.querySelector('.forecast__city');
 
   const cityTranslate = await getTranslation(cityName.textContent, currentLang, prevLang);
   cityName.textContent = await cityTranslate.join(',');
