@@ -6,7 +6,7 @@ const clock = (timezone = 'Europe/Minsk') => {
 
   if (clockContainer) {
     const clockWithTimezone = moment().tz(timezone).format('hh:mm:ss a');
-    clockContainer.textContent = `${clockWithTimezone}`;
+    clockContainer.innerHTML = `${clockWithTimezone}`;
   }
 };
 

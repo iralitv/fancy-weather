@@ -13,12 +13,6 @@ const getWeather = memoize(async (coords, lang) => {
     });
     const data = await responce.json();
 
-    if (data.code !== 400) {
-      weatherTemplate(data);
-    } else {
-      document.querySelector('.forecast').innerHTML = `No results for "${localStorage.getItem('city')}"`;
-    }
-
     return data;
   } catch (e) {
     return e;

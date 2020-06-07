@@ -5,6 +5,7 @@ import clock from './clock';
 import map from './map';
 import { convertTemp } from './convertTemp';
 import changeBackground from './background';
+import weatherTemplate from "./weatherTemplate";
 
 let clockInterval;
 
@@ -13,10 +14,11 @@ const searchWeather = async (lang = 'en') => {
   try {
     const coords = await getUserLocation();
     writeCoords(coords);
-    const weather = await getWeather(coords, lang);
+    const weatherData = await getWeather(coords, lang);
+    weatherTemplate(weatherData);
     map(coords.reverse());
-    if (weather.timezone) {
-      clockInterval = setInterval(() => clock(`${weather.timezone}`), 1000);
+    if (weatherData.timezone) {
+      clockInterval = setInterval(() => clock(`${weatherData.timezone}`), 1000);
     }
 
     if (localStorage.getItem('temp') === 'F') {
@@ -25,7 +27,7 @@ const searchWeather = async (lang = 'en') => {
 
     const background = changeBackground(localStorage.getItem('city'));
 
-    Promise.all([coords, weather, background])
+    Promise.all([coords, weatherData, background])
       .then(() => {
         document.querySelector('.forecast').classList.remove('loading');
         document.querySelector('.forecast__notification').textContent = '';

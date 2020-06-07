@@ -56,19 +56,22 @@ const getTranslation = memoize(async (enWord, currentLang, prevLang) => {
 
     return data.text;
   } catch (e) {
+    console.log(e.message)
     return e;
   }
 });
 
 const changeLanguage = async (event) => {
   let prevLang = localStorage.getItem('language') || 'en';
-  const currentLang = (event.target && event.target.value) || 'en';
+  const currentLang = (event && event.target && event.target.value) || localStorage.getItem('language') || 'en';
   localStorage.setItem('language', currentLang);
   const cityName = document.querySelector('.forecast__city');
 
-  const cityTranslate = await getTranslation(cityName.textContent, currentLang, prevLang);
-  cityName.textContent = await cityTranslate.join(',');
   changeLocaleService.changeLocale(currentLang);
+  if(cityName && cityName.textContent) {
+    const cityTranslate = await getTranslation(cityName.textContent, currentLang, prevLang);
+    cityName.textContent = await cityTranslate.join(',');
+  }
 };
 
 export default changeLanguage;
